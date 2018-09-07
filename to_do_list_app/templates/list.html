@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+<form action='save_list_object' method="post" target="_self">
+    {% csrf_token %}
+
+    <input name="content" type="text"><br>
+
+    <input type="submit" value="Send"><br>
+
+</form>
+
+{% for object in list_objects %}
+    <div>
+        {{ object.post_date }}
+        {{ object.content }}
+        <button href="{% url 'delete_object' object.id %}" type="button">Eliminar</button>
+        <button type="button">Archivar</button>
+    </div>
+{% endfor %}
+
+</body>
+
+</html>
