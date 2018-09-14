@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from django.shortcuts import render, redirect
 from .models import *
+from datetime import datetime
 
 # Create your views here.
 
@@ -12,24 +13,26 @@ def list_render(request):
 
 def save_list_object(request):
     if request.POST:
-        post_date = request.POST.get('post_date', None)
         content = request.POST.get('content', None)
-        archived = request.POST.get('archived', None)
 
         if content:
             new_object = List_Object()
-            new_object.post_date = post_date
+            new_object.post_date = datetime.now().date()
             new_object.content = content
-            new_object.archived = archived
+            new_object.archived = False
+
+            new_object.save()
 
         return redirect('/')
 
-def delete_object(request, id_object):
+def delete_list_object(request, id_object):
     object = List_Object.objects.get(id=id_object)
     object.delete()
     return redirect('/')
 
-def archive_object(request, id_object):
+def archive_list_object(request, id_object):
     object = List_Object.objects.get(id=id_object)
-    object.archived = True
+    object.archived = False
+    object.save()
+
     return redirect('/')

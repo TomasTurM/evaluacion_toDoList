@@ -17,12 +17,14 @@
 </form>
 
 {% for object in list_objects %}
-    <div>
-        {{ object.post_date }}
-        {{ object.content }}
-        <button href="{% url 'delete_object' object.id %}" type="button">Eliminar</button>
-        <button type="button">Archivar</button>
-    </div>
+    {% if object.archived == False %}
+        <div>
+            {{ object.post_date }}
+            {{ object.content }}
+            <button href="{% url 'delete_list_object' object.id %}" type="button">Eliminar</button>
+            <button href="{% url 'archive_list_object' object.id %}" type="button">Archivar</button>
+        </div>
+    {% endif %}
 {% endfor %}
 
 </body>

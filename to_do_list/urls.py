@@ -20,6 +20,7 @@ from to_do_list_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.list_render, name='list_render'),
-    path('save_object/', views.save_list_object, name='save_list_object'),
-    path('delete_object/<int:object_id>', views.delete_object, name='delete_object'),
+    path('save_list_object', views.save_list_object, name='save_list_object'),
+    path('archive_list_object/<int:object_id>', views.archive_list_object, name='archive_list_object'),
+    path('delete_list_object/<int:object_id>', views.delete_list_object, name='delete_list_object'),
 ]
