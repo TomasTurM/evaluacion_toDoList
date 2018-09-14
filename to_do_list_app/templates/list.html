@@ -21,8 +21,16 @@
         <div>
             {{ object.post_date }}
             {{ object.content }}
-            <button href="{% url 'delete_list_object' object.id %}" type="button">Eliminar</button>
-            <button href="{% url 'archive_list_object' object.id %}" type="button">Archivar</button>
+            <form action='archive_list_object/' method="post" target="_self">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ object.id }}">
+                <input type="submit" value="Archive">
+            </form>
+            <form action='delete_list_object/' method="post" target="_self">
+                {% csrf_token %}
+                <input type="hidden" name="id" value={{ object.id }}>
+                <input type="submit" value="Delete">
+            </form>
         </div>
     {% endif %}
 {% endfor %}

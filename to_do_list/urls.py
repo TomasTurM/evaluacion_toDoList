@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.list_render, name='list_render'),
     path('save_list_object', views.save_list_object, name='save_list_object'),
-    path('archive_list_object/<int:object_id>', views.archive_list_object, name='archive_list_object'),
-    path('delete_list_object/<int:object_id>', views.delete_list_object, name='delete_list_object'),
+    path('archive_list_object/', views.archive_list_object, name='archive_list_object'),
+    path('delete_list_object/', views.delete_list_object, name='delete_list_object'),
 ]

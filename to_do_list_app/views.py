@@ -23,16 +23,17 @@ def save_list_object(request):
 
             new_object.save()
 
-        return redirect('/')
+        return redirect('list_render')
 
-def delete_list_object(request, id_object):
-    object = List_Object.objects.get(id=id_object)
+def delete_list_object(request):
+    object = List_Object.objects.get(id=request.POST.get('id'))
     object.delete()
-    return redirect('/')
 
-def archive_list_object(request, id_object):
-    object = List_Object.objects.get(id=id_object)
-    object.archived = False
+    return redirect('list_render')
+
+def archive_list_object(request):
+    object = List_Object.objects.get(id=request.POST.get('id'))
+    object.archived = True
     object.save()
 
-    return redirect('/')
+    return redirect('list_render')
